@@ -27,6 +27,14 @@ function Enable-Wsl-Bridge {
     }
 }
 
+function Setup-Git {
+    git config --global user.name "Gergő Radeczki"
+    git config --global user.email "g.radeczki@gmail.com"
+    git config --global core.editor "~\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+    git config --global init.defaultBranch main
+    git config --global core.ignorecase false
+}
+
 function Install-My-Programs {
     param (
         [switch]$devTools = $false,
@@ -96,7 +104,7 @@ function Install-My-Programs {
 
     if($installGameLaunchers) {
         Write-Host "Installing game launchers" -ForegroundColor Cyan
-        #Install-Using-Winget -appId "9PGW18NPBZV5" -appName "Minecraft Launcher" -source "msstore"
+        Install-Using-Winget -appId "9PGW18NPBZV5" -appName "Minecraft Launcher" -source "msstore"
         Install-Using-Winget -appId "Valve.Steam" -appName "Steam" -source "winget"
         Install-Using-Winget -appId "ElectronicArts.EADesktop" -appName "EA app" -source "winget"
         Install-Using-Winget -appId "Ubisoft.Connect" -appName "Ubisoft Connect" -source "winget"
@@ -122,12 +130,4 @@ function Install-My-Programs {
     Write-Host "youtube-dl: " -NoNewline -ForegroundColor Red
     Write-Host "https://github.com/ytdl-org/youtube-dl" -ForegroundColor Blue
 
-}
-
-function Setup-Git {
-    git config --global user.name "Gergő Radeczki"
-    git config --global user.email "g.radeczki@gmail.com"
-    git config --global core.editor "~\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-    git config --global init.defaultBranch main
-    git config --global core.ignorecase false
 }
