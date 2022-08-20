@@ -1,5 +1,7 @@
 # Zsh and Oh My Zsh config files
 
+!["My terminal prompt theme"](terminal.png)
+
 ## Installing Zsh
 
 ```bash
