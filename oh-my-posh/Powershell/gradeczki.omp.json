@@ -36,6 +36,19 @@
           "type": "path"
         },
         {
+          "background": "#82cc2b",
+          "foreground": "#100e23",
+          "leading_diamond": "<transparent,#82cc2b>\ue0b0</>",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "style": "full"
+          },
+          "style": "diamond",
+          "template": "  {{ .Full }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "node"
+        },
+        {
           "background": "#00FF00",
           "background_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF7700{{ end }}",

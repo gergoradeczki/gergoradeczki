@@ -1,5 +1,6 @@
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-oh-my-posh --init --shell pwsh --config ~/OneDrive/Dokumentumok/PowerShell/gradeczki.omp.json | Invoke-Expression
+fnm env --use-on-cd --corepack-enabled | Out-String | Invoke-Expression
+oh-my-posh init pwsh --config ~/OneDrive/Dokumentumok/PowerShell/gradeczki.omp.json | Invoke-Expression
 
 function Enable-Wsl-Bridge {
     param(
@@ -33,6 +34,7 @@ function Setup-Git {
     git config --global core.editor "~\AppData\Local\Programs\Microsoft VS Code\Code.exe"
     git config --global init.defaultBranch main
     git config --global core.ignorecase false
+    git config --global core.autocrlf input
 }
 
 function Install-My-Programs {
@@ -65,28 +67,27 @@ function Install-My-Programs {
 
     if($installDevTools) {
         Write-Host "Installing dev tools" -ForegroundColor Cyan
-        Install-Using-Winget -appId "XP9KHM4BK9FZ7Q" -appName "Microsoft Visual Studio Code" -source "msstore"
-        Install-Using-Winget -appId "XPDCFJDKLZJLP8" -appName "Visual Studio Community 2022" -source "msstore"
+        Install-Using-Winget -appId "Microsoft.VisualStudioCode" -appName "Microsoft Visual Studio Code" -source "winget"
+        Install-Using-Winget -appId "Microsoft.VisualStudio.2022.Community" -appName "Visual Studio Community 2022" -source "winget"
         Install-Using-Winget -appId "JetBrains.Toolbox" -appName "JetBrains Toolbox" -source "winget"
-        Install-Using-Winget -appId "9MZ1SNWT0N5D" -appName "PowerShell" -source "msstore"
+        Install-Using-Winget -appId "Microsoft.PowerShell" -appName "PowerShell" -source "winget"
         Install-Using-Winget -appId "JanDeDobbeleer.OhMyPosh" -appName "Oh My Posh" -source "winget"
-        Install-Using-Winget -appId "XP89DCGQ3K6VLD" -appName "PowerToys (Preview)" -source "msstore"
+        Install-Using-Winget -appId "Microsoft.PowerToys" -appName "PowerToys (Preview)" -source "winget"
         Install-Using-Winget -appId "OpenJS.NodeJS.LTS" -appName "Node.js" -source "winget"
         Install-Using-Winget -appId "Docker.DockerDesktop" -appName "Docker Desktop" -source "winget"
-        
     }
 
     if($installUtilityTools) {
         Write-Host "Installing utility tools" -ForegroundColor Cyan
-        Install-Using-Winget -appId "XPDC2RH70K22MN" -appName "Discord" -source "msstore"
-        Install-Using-Winget -appId "9PB2MZ1ZMB1S" -appName "iTunes" -source "msstore"
-        Install-Using-Winget -appId "9WZDNCRDK3WP" -appName "Slack" -source "msstore"
+        Install-Using-Winget -appId "Discord.Discord" -appName "Discord.Discord" -source "winget"
+        Install-Using-Winget -appId "Apple.iTunes" -appName "iTunes" -source "winget"
+        Install-Using-Winget -appId "SlackTechnologies.Slack" -appName "Slack" -source "winget"
         Install-Using-Winget -appId "Mattermost.MattermostDesktop" -appName "Mattermost" -source "winget"
         Install-Using-Winget -appId "7zip.7zip" -appName "7-Zip" -source "winget"
         Install-Using-Winget -appId "VideoLAN.VLC" -appName "VLC media player" -source "winget"
-        Install-Using-Winget -appId "9NN77TCQ1NC8" -appName "Mp3tag" -source "msstore"
+        Install-Using-Winget -appId "Mp3tag.Mp3tag" -appName "Mp3tag" -source "winget"
         Install-Using-Winget -appId "PDFsam.PDFsam" -appName "PDFsam Basic" -source "winget"
-        Install-Using-Winget -appId "XPFFH613W8V6LV" -appName "OBS Studio" -source "msstore"
+        Install-Using-Winget -appId "OBSProject.OBSStudio" -appName "OBS Studio" -source "winget"
         Install-Using-Winget -appId "Plex.Plex" -appName "Plex" -source "winget"
         Install-Using-Winget -appId "Olivia.VIA" -appName "VIA" -source "winget"
         Install-Using-Winget -appId "qBittorrent.qBittorrent" -appName "qBittorrent" -source "winget"
@@ -94,11 +95,11 @@ function Install-My-Programs {
 
     if($installCreationTools) {
         Write-Host "Installing creation tools" -ForegroundColor Cyan
-        Install-Using-Winget -appId "9PP3C07GTVRH" -appName "Blender" -source "msstore"
+        Install-Using-Winget -appId "BlenderFoundation.Blender" -appName "Blender" -source "winget"
         Install-Using-Winget -appId "Figma.Figma" -appName "Figma" -source "winget"
-        Install-Using-Winget -appId "9nblggh35lrm" -appName "Affinity Designer" -source "msstore"
-        Install-Using-Winget -appId "9nblggh35lxn" -appName "Affinity Photo" -source "msstore"
-        Install-Using-Winget -appId "9nblggh35lzr" -appName "Affinity Publisher" -source "msstore"
+        Install-Using-Winget -appId "9N2D0P16C80H" -appName "Affinity Designer 2" -source "msstore"
+        Install-Using-Winget -appId "9P8DVF1XW02V" -appName "Affinity Photo 2" -source "msstore"
+        Install-Using-Winget -appId "9NTV2DZ11KD9" -appName "Affinity Publisher 2" -source "msstore"
         Install-Using-Winget -appId "MarkText.MarkText" -appName "Mark Text" -source "winget"
     }
 
@@ -113,12 +114,12 @@ function Install-My-Programs {
         #Install-Using-Winget -appId "" -appName "" -source "winget"
     }
 
-    Write-Host "Affinity Designer: " -NoNewline -ForegroundColor Red
-    Write-Host "ms-windows-store://pdp/?ProductId=9nblggh35lrm" -ForegroundColor Blue
-    Write-Host "Affinity Photo: " -NoNewline -ForegroundColor Red
-    Write-Host "ms-windows-store://pdp/?ProductId=9nblggh35lxn" -ForegroundColor Blue
-    Write-Host "Affinity Publisher: " -NoNewline -ForegroundColor Red
-    Write-Host "ms-windows-store://pdp/?ProductId=9nblggh35lzr" -ForegroundColor Blue
+    Write-Host "Affinity Designer 2: " -NoNewline -ForegroundColor Red
+    Write-Host "ms-windows-store://pdp/?ProductId=9N2D0P16C80H" -ForegroundColor Blue
+    Write-Host "Affinity Photo 2: " -NoNewline -ForegroundColor Red
+    Write-Host "ms-windows-store://pdp/?ProductId=9P8DVF1XW02V" -ForegroundColor Blue
+    Write-Host "Affinity Publisher 2: " -NoNewline -ForegroundColor Red
+    Write-Host "ms-windows-store://pdp/?ProductId=9NTV2DZ11KD9" -ForegroundColor Blue
     Write-Host "DaVinci Resolve 17: " -NoNewline -ForegroundColor Red
     Write-Host "https://www.blackmagicdesign.com/products/davinciresolve/" -ForegroundColor Blue
     Write-Host "Office 365: " -NoNewline -ForegroundColor Red
@@ -129,5 +130,4 @@ function Install-My-Programs {
     Write-Host "https://github.com/git-for-windows/git/releases" -ForegroundColor Blue
     Write-Host "youtube-dl: " -NoNewline -ForegroundColor Red
     Write-Host "https://github.com/ytdl-org/youtube-dl" -ForegroundColor Blue
-
 }
