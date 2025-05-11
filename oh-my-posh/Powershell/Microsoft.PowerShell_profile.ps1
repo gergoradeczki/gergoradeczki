@@ -1,5 +1,5 @@
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-fnm env --use-on-cd --corepack-enabled | Out-String | Invoke-Expression
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 oh-my-posh init pwsh --config ~/OneDrive/Dokumentumok/PowerShell/gradeczki.omp.json | Invoke-Expression
 
 function Enable-Wsl-Bridge {
@@ -33,8 +33,8 @@ function Setup-Git {
     git config --global user.email "g.radeczki@gmail.com"
     git config --global core.editor "~\AppData\Local\Programs\Microsoft VS Code\Code.exe"
     git config --global init.defaultBranch main
-    git config --global core.ignorecase false
-    git config --global core.autocrlf input
+    git config --global core.ignorecase true
+    git config --global core.autocrlf true
 }
 
 function Install-My-Programs {
@@ -68,13 +68,12 @@ function Install-My-Programs {
     if($installDevTools) {
         Write-Host "Installing dev tools" -ForegroundColor Cyan
         Install-Using-Winget -appId "Microsoft.VisualStudioCode" -appName "Microsoft Visual Studio Code" -source "winget"
-        Install-Using-Winget -appId "Microsoft.VisualStudio.2022.Community" -appName "Visual Studio Community 2022" -source "winget"
         Install-Using-Winget -appId "JetBrains.Toolbox" -appName "JetBrains Toolbox" -source "winget"
         Install-Using-Winget -appId "Microsoft.PowerShell" -appName "PowerShell" -source "winget"
         Install-Using-Winget -appId "JanDeDobbeleer.OhMyPosh" -appName "Oh My Posh" -source "winget"
         Install-Using-Winget -appId "Microsoft.PowerToys" -appName "PowerToys (Preview)" -source "winget"
-        Install-Using-Winget -appId "OpenJS.NodeJS.LTS" -appName "Node.js" -source "winget"
         Install-Using-Winget -appId "Docker.DockerDesktop" -appName "Docker Desktop" -source "winget"
+        Install-Using-Winget -appId "Schniz.fnm" -appName "Fast Node Manager" -source "winget"
     }
 
     if($installUtilityTools) {
@@ -105,12 +104,13 @@ function Install-My-Programs {
 
     if($installGameLaunchers) {
         Write-Host "Installing game launchers" -ForegroundColor Cyan
-        Install-Using-Winget -appId "9PGW18NPBZV5" -appName "Minecraft Launcher" -source "msstore"
+        Install-Using-Winget -appId "Mojang.MinecraftLauncher" -appName "Minecraft Launcher" -source "winget"
         Install-Using-Winget -appId "Valve.Steam" -appName "Steam" -source "winget"
         Install-Using-Winget -appId "ElectronicArts.EADesktop" -appName "EA app" -source "winget"
         Install-Using-Winget -appId "Ubisoft.Connect" -appName "Ubisoft Connect" -source "winget"
         Install-Using-Winget -appId "EpicGames.EpicGamesLauncher" -appName "Epic Games Launcher" -source "winget"
         Install-Using-Winget -appId "GOG.Galaxy" -appName "GOG GALAXY" -source "winget"
+        Install-Using-Winget -appId "Blizzard.BattleNet" -appName "Battle.net" -source "winget"
         #Install-Using-Winget -appId "" -appName "" -source "winget"
     }
 
@@ -120,14 +120,14 @@ function Install-My-Programs {
     Write-Host "ms-windows-store://pdp/?ProductId=9P8DVF1XW02V" -ForegroundColor Blue
     Write-Host "Affinity Publisher 2: " -NoNewline -ForegroundColor Red
     Write-Host "ms-windows-store://pdp/?ProductId=9NTV2DZ11KD9" -ForegroundColor Blue
-    Write-Host "DaVinci Resolve 17: " -NoNewline -ForegroundColor Red
+    Write-Host "DaVinci Resolve: " -NoNewline -ForegroundColor Red
     Write-Host "https://www.blackmagicdesign.com/products/davinciresolve/" -ForegroundColor Blue
     Write-Host "Office 365: " -NoNewline -ForegroundColor Red
     Write-Host "https://portal.office.com/" -ForegroundColor Blue
-    Write-Host "Battle.net Desktop App: " -NoNewline -ForegroundColor Red
-    Write-Host "https://www.blizzard.com/en-us/apps/battle.net/desktop" -ForegroundColor Blue
+    Write-Host "Rockstar Games Launcher: " -NoNewline -ForegroundColor Red
+    Write-Host "https://socialclub.rockstargames.com/rockstar-games-launcher" -ForegroundColor Blue
     Write-Host "MinGit: " -NoNewline -ForegroundColor Red
     Write-Host "https://github.com/git-for-windows/git/releases" -ForegroundColor Blue
-    Write-Host "youtube-dl: " -NoNewline -ForegroundColor Red
-    Write-Host "https://github.com/ytdl-org/youtube-dl" -ForegroundColor Blue
+    Write-Host "yt-dlp: " -NoNewline -ForegroundColor Red
+    Write-Host "https://github.com/yt-dlp/yt-dlp" -ForegroundColor Blue
 }
